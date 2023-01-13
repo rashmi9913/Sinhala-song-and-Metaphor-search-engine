@@ -59,5 +59,13 @@ Each song contains following data fields.
    - Interpretation
    - Source Domain
    - Target Domain
-  
+
+## Starting the web app
+
+### Pre requesists :
+   - Python, Elasticsearch and Kibana needed in your PC
+   
+### Getting started with the web app :
+   - Start elasticsearch cluster on port 9200 run Kibana
+   - Clone the repository
 
