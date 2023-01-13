@@ -10,11 +10,31 @@ A search engine developed using Python and Elasticsearch that can be used to sea
 
 1. Searching songs that include metaphors using the Title, Lyric, Metaphor and Metaphor interpretation.
 2. Faceted search.
-* Unordered list can use asterisksUsers will be able to filter search results based on the Artist, Genre, Songwriter, Composer, Metaphor source domain and Metaphor target domain.
-* Multi filtering is also supported.
+   - Users will be able to filter search results based on the Artist, Genre, Songwriter, Composer, Metaphor source domain and Metaphor target domain.
+   - Multi filtering is also supported.
+3. Recommending metaphors based on the source domain and target domain of metaphors.
+4. Bilingual Support.
+   - Searching songs using the Title of the song in both Sinhala and English search terms are supported by the search engine.
+5. Synonyms Support.
+   - The search engine supports synonyms.
 
-1. First list item
-   - First nested list item
-   
+## Directory structure
+
+├── data : data scraped from the [website](http://sinhalasongbook.com/)                    
+    ├── songs_dataset.json : contains original data of all songs scraped form the website
+    ├── metaphors.csv : contains metaphor, interpretaion, source domain and target domain related to metaphors that are in each song
+    └── songs_links.csv : contains links of all songs 
+├── templates : UI related files                   
+    ├── css 
+	├── main.css : contains stylings of the main page
+    ├── data  
+	├── songs_meta_all.json : contains all meta date related to the songs
+    └── main.html : html code for the main page  
+├── app.py : Backend of the web app created using Flask 
+├── data.json : Contains data inputted at t-1 time
+├── insertToElasticSearch.py : File to upload data to elasticsearch cluster
+├── query.py :  Elasticsearch queries  
+├── scraper.py :  Source code for the data scraper  
+├── search.py : Search functions used to classify user search phrases  
   
 
