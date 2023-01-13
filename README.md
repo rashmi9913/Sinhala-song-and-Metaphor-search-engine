@@ -43,6 +43,21 @@ A search engine developed using Python and Elasticsearch that can be used to sea
 
 Each song contains following data fields.
 
-* Unordered list can use asterisks
+* Song ID 
+* Title : Title of the song (both in Sinhala and English)
+* Artist_en : Artist/List of artists of the song  in English
+* Artist_si : Artist/List of artists of the song  in Sinhala
+* Genre_en : Genre/List of genres of the song in English
+* Genre_si : Genre/List of genres of the song in Sinhala
+* Song Writer_en : Song writer/List of song writers of the song in English
+* Song Writer_si : Song writer/List of song writers of the song in Sinhala
+* Music_en : Composer/List of composers of the song in English
+* Music_si : Composer/List of composers of the song in English
+* Lyrics : Lyrics of the song
+* Metaphors : Metaphor/List of metaphors in the song
+   - Metaphor
+   - Interpretation
+   - Source Domain
+   - Target Domain
   
 
