@@ -73,7 +73,7 @@ Each song contains following data fields.
    ```
    - Create Python vurtual environment
    ```
-   cd ...
+   cd Sinhala-song-and-Metaphor-search-engine
    pip install virtualenv
    virtualenv <!--env_name-->
    <!--env_name-->\Scripts\activate
