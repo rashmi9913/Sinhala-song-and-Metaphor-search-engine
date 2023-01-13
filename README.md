@@ -69,7 +69,7 @@ Each song contains following data fields.
    - Start elasticsearch cluster on port 9200 run Kibana
    - Clone the repository
    ```
-   https://github.com/rashmi9913/Sinhala-song-and-Metaphor-search-engine.git
+   git clone https://github.com/rashmi9913/Sinhala-song-and-Metaphor-search-engine.git
    ```
    - Create Python vurtual environment
    ```
