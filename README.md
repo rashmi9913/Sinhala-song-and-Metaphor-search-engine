@@ -20,7 +20,8 @@ A search engine developed using Python and Elasticsearch that can be used to sea
 
 ## Directory structure
 
-├── data : data scraped from the [website](http://sinhalasongbook.com/)                    
+```
+├── data : data scraped from [Sinhala Songbook](https://www.sinhalasongbook.com/)                    
     ├── songs_dataset.json : contains original data of all songs scraped form the website
     ├── metaphors.csv : contains metaphor, interpretaion, source domain and target domain related to metaphors that are in each song
     └── songs_links.csv : contains links of all songs 
@@ -36,5 +37,6 @@ A search engine developed using Python and Elasticsearch that can be used to sea
 ├── query.py :  Elasticsearch queries  
 ├── scraper.py :  Source code for the data scraper  
 ├── search.py : Search functions used to classify user search phrases  
+```
   
 
