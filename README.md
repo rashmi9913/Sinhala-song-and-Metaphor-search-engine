@@ -70,14 +70,32 @@ Each song contains following data fields.
    - Clone the repository
    ```
    https://github.com/rashmi9913/Sinhala-song-and-Metaphor-search-engine.git
-   cd ...
    ```
    - Create Python vurtual environment
    ```
+   cd ...
    pip install virtualenv
-   virtualenv myenv
-   myenv\Scripts\activate
-   <!-- dddd -->
+   virtualenv <!--env_name-->
+   <!--env_name-->\Scripts\activate
    ```
-   - xx
+   - Install required libraries
+   ```
+   pip3 install requests
+   pip3 install beautifulsoup4
+   pip3 install googletrans==4.0.0rc1
+   pip3 install elasticsearch 
+   pip3 install elasticsearch-dsl
+   ```
+   - Run scraper.py to scrape data from the website
+   ```
+   py scraper.py
+   ```
+   - Run insertToElasticSearch.py to insert the corpus and mappings to the Elasticsearch by create the index 
+   ```
+   py insertToElasticSearch.py
+   ```
+   - Start search engine app by running app.py
+   ```
+   Flask --app app run
+   ```
 
