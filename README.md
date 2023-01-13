@@ -38,5 +38,11 @@ A search engine developed using Python and Elasticsearch that can be used to sea
 ├── scraper.py :  Source code for the data scraper  
 └── search.py : Search functions used to classify user search phrases  
 ```
+
+## Details about the dataset
+
+Each song contains following data fields.
+
+* Unordered list can use asterisks
   
 
