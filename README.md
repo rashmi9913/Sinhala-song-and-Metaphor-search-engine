@@ -68,4 +68,16 @@ Each song contains following data fields.
 ### Getting started with the web app :
    - Start elasticsearch cluster on port 9200 run Kibana
    - Clone the repository
+   ```
+   https://github.com/rashmi9913/Sinhala-song-and-Metaphor-search-engine.git
+   cd ...
+   ```
+   - Create Python vurtual environment
+   ```
+   pip install virtualenv
+   virtualenv myenv
+   myenv\Scripts\activate
+   <!-- dddd -->
+   ```
+   - xx
 
