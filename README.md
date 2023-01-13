@@ -10,7 +10,7 @@ A search engine developed using Python and Elasticsearch that can be used to sea
 
 1. Searching songs that include metaphors using the Title, Lyric, Metaphor and Metaphor interpretation.
 2. Faceted search.
-* Unordered list can use asterisksUsers will be able to filter search results based on the Artist, Genre, Songwriter, Composer, Metaphor source domain and Metaphor target domain.
+&nbsp;* Unordered list can use asterisksUsers will be able to filter search results based on the Artist, Genre, Songwriter, Composer, Metaphor source domain and Metaphor target domain.
 * Multi filtering is also supported.
    
   
