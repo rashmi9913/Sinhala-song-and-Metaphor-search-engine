@@ -21,22 +21,22 @@ A search engine developed using Python and Elasticsearch that can be used to sea
 ## Directory structure
 
 ```
-├── data : data scraped from [Sinhala Songbook](https://www.sinhalasongbook.com/)                    
-    ├── songs_dataset.json : contains original data of all songs scraped form the website
-    ├── metaphors.csv : contains metaphor, interpretaion, source domain and target domain related to metaphors that are in each song
-    └── songs_links.csv : contains links of all songs 
+├── data : Data scraped from [Sinhala Songbook](https://www.sinhalasongbook.com/)                    
+    ├── songs_dataset.json : Contains original data of all songs scraped form the website
+    ├── metaphors.csv : Contains metaphor, interpretaion, source domain and target domain related to metaphors in each song
+    └── songs_links.csv : Contains links of all songs 
 ├── templates : UI related files                   
     ├── css 
-	├── main.css : contains stylings of the main page
+	└── main.css : Contains stylings of the main page
     ├── data  
-	├── songs_meta_all.json : contains all meta date related to the songs
+	└── songs_meta_all.json : Contains all meta date related to the songs
     └── main.html : html code for the main page  
 ├── app.py : Backend of the web app created using Flask 
-├── data.json : Contains data inputted at t-1 time
-├── insertToElasticSearch.py : File to upload data to elasticsearch cluster
+├── data.json : Contains data that are related to previous sarch
+├── insertToElasticSearch.py : File to upload data and mappings to elasticsearch cluster by creating an index
 ├── query.py :  Elasticsearch queries  
 ├── scraper.py :  Source code for the data scraper  
-├── search.py : Search functions used to classify user search phrases  
+└── search.py : Search functions used to classify user search phrases  
 ```
   
 
