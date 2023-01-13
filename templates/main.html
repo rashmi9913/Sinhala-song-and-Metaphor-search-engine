@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sinhala Songs Search Engine</title>
+    <link href="{{url_for('static', filename='css/main.css') }}" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+
+    <!--header section start -->
+    <div class="header">
+        <p class="header-text">SINHALA SONGS WITH METAPHORS SEARCH ENGINE</p>
+    </div>
+    <!--header section end -->
+
+    <!--searchbar section start -->
+    <div class="searchbar-container"> 
+        <form action="http://127.0.0.1:5000/" method="post">
+        <div class="search"> 
+            <div class="search-box"> 
+                <div>
+                    <input type="text" class="searchTerm" name="searchTerm" id="searchTerm" value="" placeholder="Enter your search query..."> 
+                    <input type="submit" class="submitbtn" value="Search">
+                </div>
+            </div> 
+        </div>
+
+        <!--filter section start -->
+        <div class="filter">
+            <div class="artist">
+                <label class="filterlabel" for="filter">Filter by Artist</label>
+                <input class="filterinput-artist" name="filterinput-artist" onchange="this.form.submit()" list="artists" id="filterinput-artist" placeholder="Enter Artist Name..." />
+                <datalist id="artists">
+                </datalist>
+            </div>
+
+            <div class="genre">
+                <label class="filterlabel" for="filter">Filter by Genre</label>
+                <input class="filterinput-genre" name="filterinput-genre" onchange="this.form.submit()" list="genres" id="filterinput-genre" placeholder="Enter Genre..." />
+                <datalist id="genres">
+                </datalist>
+            </div>
+
+            <div class="songwriter">
+                <label class="filterlabel" for="filter">Filter by Song Writer</label>
+                <input class="filterinput-songwriter" name="filterinput-songwriter" onchange="this.form.submit()" list="songwriters" id="filterinput-songwriter" placeholder="Enter Song Writer Name..." />
+                <datalist id="songwriters">
+                </datalist>
+            </div>
+
+            <div class="composer">
+                <label class="filterlabel" for="filter">Filter by Composer</label>
+                <input class="filterinput-composer" name="filterinput-composer" onchange="this.form.submit()" list="composers" id="filterinput-composer" placeholder="Enter Composer Name..." />
+                <datalist id="composers">
+                </datalist>
+            </div>
+        </div>
+
+        <div class="filter">
+            <label class="filterlabel-metaphor" for="filter">Filter by Metaphor Attributes</label>
+            <div class="source">
+                <input class="filterinput-source" name="filterinput-source" onchange="this.form.submit()" list="sources" id="filterinput-source" placeholder="Enter Source Domain..." />
+                <datalist id="sources">
+                </datalist>
+            </div>
+
+            <div class="target">
+                <input class="filterinput-target" name="filterinput-target" onchange="this.form.submit()" list="targets" id="filterinput-target" placeholder="Enter Target Domain..." />
+                <datalist id="targets">
+                </datalist>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function(){
+                $.getJSON("{{url_for('static', filename='data/songs_meta_all.json') }}", function(data){
+                    var artistList = data['Artist_si'];
+                    var genreList = data['Genre_si'];
+                    var songwriterList = data['Song Writer_si'];
+                    var composerList = data['Music_si'];
+                    var metaphorsList = data['Metaphors'];
+                    $("#artists").append("<option value = \"" + "-"  + "\">");
+                    jQuery.each( artistList, function( i, name ) {
+                        $("#artists").append("<option value = \"" + name  + "\">");
+                    });
+                    $("#genres").append("<option value = \"" + "-"  + "\">");
+                    jQuery.each( genreList, function( i, genre ) {
+                        $("#genres").append("<option value = \"" + genre + "\">");
+                    });
+                    $("#songwriters").append("<option value = \"" + "-"  + "\">");
+                    jQuery.each( songwriterList, function( i, name ) {
+                        $("#songwriters").append("<option value = \"" + name  + "\">");
+                    });
+                    $("#composers").append("<option value = \"" + "-"  + "\">");
+                    jQuery.each( composerList, function( i, name ) {
+                        $("#composers").append("<option value = \"" + name  + "\">");
+                    });
+                    $("#sources").append("<option value = \"" + "-"  + "\">");
+                    $("#targets").append("<option value = \"" + "-"  + "\">");
+                    jQuery.each( metaphorsList, function( i, metaphor ) {
+                        $("#sources").append("<option value = \"" + metaphor['Source Domain'] + "\">");
+                        $("#targets").append("<option value = \"" + metaphor['Target Domain'] + "\">");
+                    });
+                }).fail(function(){
+                    console.log("An error has occurred.");
+                });
+            });
+        </script>
+        <!--filter section end -->
+        </form>
+    </div>
+    <!--searchbar section end -->
+
+    {% if data %}
+        <script data="{{data}}" type="text/javascript">
+            const data = document.currentScript.getAttribute('data');
+            mydata = '{{data|tojson}}';
+            var data_parsed = JSON.parse(mydata);
+            if (data_parsed['query_search'] != "Enter your search query...") {
+                $("#searchTerm").attr('value',data_parsed['query_search']);;
+            } else {
+                $("#searchTerm").attr('placeholder',data_parsed['query_search']);;
+            }
+            $("#filterinput-artist").attr('placeholder',data_parsed['query_filter_artist']);
+            $("#filterinput-genre").attr('placeholder',data_parsed['query_filter_genre']);
+            $("#filterinput-songwriter").attr('placeholder',data_parsed['query_filter_songwriter']);
+            $("#filterinput-composer").attr('placeholder',data_parsed['query_filter_composer']);
+            $("#filterinput-source").attr('placeholder',data_parsed['query_filter_source']);
+            $("#filterinput-target").attr('placeholder',data_parsed['query_filter_target']);
+        </script>
+    {% endif %}
+
+    {% if results %}
+        <!--results section start -->
+        <div class="results-container">
+        <P class="songs-list">SONGS LIST</P>
+            {% for result in results %}
+                <div class="results">
+                    <div id="nav">
+                        <div class="result-item">{{result['Title']}}</div>
+                        <div class="dropdown">
+
+                            <!--data section start -->
+                            <div class="data-container">
+                                <div class="cards">
+                                <div class="card card-1">
+                                    <label class="data-label">Artist :</label>
+                                    {% if result['Artist_en'] is string %}
+                                        <div class="card-data">{{result['Artist_en']}} - {{result['Artist_si']}}</div>
+                                    {% else %}
+                                        {% for count in range(result['Artist_en']|length) %}
+                                            {% if count != (result['Artist_en']|length)-1 %}
+                                                <div class="card-data">{{result['Artist_en'][count]}} - {{result['Artist_si'][count]}} , </div>
+                                            {% else %}
+                                                <div class="card-data">{{result['Artist_en'][count]}} - {{result['Artist_si'][count]}}</div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                                <div class="card card-2">
+                                    <label class="data-label">Genre :</label>
+                                    {% if result['Genre_en'] is string %}
+                                        <div class="card-data">{{result['Genre_en']}} - {{result['Genre_si']}}</div>
+                                    {% else %}
+                                        {% for count in range(result['Genre_en']|length) %}
+                                            {% if count != (result['Genre_en']|length)-1 %}
+                                                <div class="card-data">{{result['Genre_en'][count]}} - {{result['Genre_si'][count]}} , </div>
+                                            {% else %}
+                                                <div class="card-data">{{result['Genre_en'][count]}} - {{result['Genre_si'][count]}}</div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                                <div class="card card-3">
+                                    <label class="data-label">Song Writer :</label>
+                                    {% if result['Song Writer_en'] is string %}
+                                        <div class="card-data">{{result['Song Writer_en']}} - {{result['Song Writer_si']}}</div>
+                                    {% else %}
+                                        {% for count in range(result['Song Writer_en']|length) %}
+                                            {% if count != (result['Song Writer_en']|length)-1 %}
+                                                <div class="card-data">{{result['Song Writer_en'][count]}} - {{result['Song Writer_si'][count]}} , </div>
+                                            {% else %}
+                                                <div class="card-data">{{result['Song Writer_en'][count]}} - {{result['Song Writer_si'][count]}}</div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                                <div class="card card-4">
+                                    <label class="data-label">Composer :</label>
+                                    {% if result['Music_en'] is string %}
+                                        <div class="card-data">{{result['Music_en']}} - {{result['Music_si']}}</div>
+                                    {% else %}
+                                        {% for count in range(result['Music_en']|length) %}
+                                            {% if count != (result['Music_en']|length)-1 %}
+                                                <div class="card-data">{{result['Music_en'][count]}} - {{result['Music_si'][count]}} , </div>
+                                            {% else %}
+                                                <div class="card-data">{{result['Music_en'][count]}} - {{result['Music_si'][count]}}</div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                                
+                                <div class="card card-5">
+                                    <label class="data-label">Lyrics :</label>
+                                    <div class="card-data">{{result['Lyrics']}}</div>
+                                </div>
+                                <div class="card card-6">
+                                    <form>
+                                        <label class="data-label">Metaphors :</label>
+                                        {% for metaphor in result['Metaphors'] %}
+                                        <div class="card card-7">
+                                            <label class="data-label">Metaphor :</label>
+                                            <div class="card-data">{{metaphor['Metaphor']}}</div>
+                                            <br>
+                                            <label class="data-label">Interpretation :</label>
+                                            <div class="card-data">{{metaphor['Interpretation']}}</div>
+                                            <br>
+                                            <label class="data-label">Source Domain :</label>
+                                            <div class="card-data">{{metaphor['Source Domain']}}</div>
+                                            <br>
+                                            <label class="data-label">Target Domain :</label>
+                                            <div class="card-data">{{metaphor['Target Domain']}}</div>
+                                        </div>
+                                        {% endfor %}
+                                    </form>
+                                </div>
+                                </div>
+                            </div>
+                            <!--data section end -->
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <!--results section end -->
+        
+        <script>
+
+            $(function() { // Dropdown toggle
+                $('.result-item').click(function() { $(this).next('.dropdown').slideToggle();
+            });
+
+            $(document).click(function(e) { 
+                var target = e.target; 
+                if (!$(target).is('.result-item') && !$(target).parents().is('.result-item')) 
+                //{ $('.dropdown').hide(); }
+                { $('.dropdown').slideUp(); }
+                });
+            });
+
+        </script>
+    {% endif %}
+
+    {% if metaphors %}
+        <!--metaphor section start -->
+        <div class="results-container">
+        <P class="metaphors-list">METAPHOR  LIST</P>
+            {% for metaphor in metaphors %}
+                <div class="results">
+                    <div id="nav">
+                        <div class="result-item">{{metaphor['Metaphor']}}</div>
+                        <div class="dropdown">
+                            <!--metaphor-data section start-->
+                            <div class="cards">
+                                <div class="card card-1">
+                                    <label class="data-label">Metaphor :</label>
+                                    <div class="card-data">{{metaphor['Metaphor']}}</div>
+                                </div>
+                                <div class="card card-2">
+                                    <label class="data-label">Interpretation :</label>
+                                    <div class="card-data">{{metaphor['Interpretation']}}</div>
+                                </div>
+                                <div class="card card-3">
+                                    <label class="data-label">Source Domain :</label>
+                                    <div class="card-data">{{metaphor['Source Domain']}}</div>
+                                </div>
+                                <div class="card card-4">
+                                    <label class="data-label">Target Domain :</label>
+                                    <div class="card-data">{{metaphor['Target Domain']}}</div>
+                                </div>
+                            <!--metaphor-data section end -->
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <!--results section end -->
+    {% endif %}
+
+</body>
+</html> 
+

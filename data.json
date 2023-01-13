@@ -1,0 +1,7 @@
+{"query_search": "Enter your search query...", 
+        "query_filter_artist": "Enter Artist Name...", 
+        "query_filter_genre": "Enter Genre...",
+        "query_filter_songwriter": "Enter Song Writer Name...",
+        "query_filter_composer": "Enter Composer Name...",
+        "query_filter_source": "Enter Source Domain...",
+        "query_filter_target": "Enter Target Domain..."}
