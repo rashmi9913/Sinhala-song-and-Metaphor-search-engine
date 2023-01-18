@@ -38,7 +38,7 @@ def get_methaphor_data(count,count_last,all_songs_metaphor_list):
 
 def scrape_pages(url_list,all_metaphor_list,count_last):
         meta_data_list = []
-        url_list=url_list[:10]
+        url_list=url_list
         for count in range(len(url_list)):
                 url = url_list[count]
                 headers = requests.utils.default_headers()
