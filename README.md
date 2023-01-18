@@ -12,6 +12,7 @@ A search engine developed using Python and Elasticsearch that can be used to sea
 2. Faceted search.
    - Users will be able to filter search results based on the Artist, Genre, Songwriter, Composer, Metaphor source domain and Metaphor target domain.
    - Multi filtering is also supported.
+   - Autocomplete filtering search query.
 3. Recommending metaphors based on the source domain and target domain of metaphors.
 4. Bilingual Support.
    - Searching songs using the Title of the song in both Sinhala and English search terms are supported by the search engine.
