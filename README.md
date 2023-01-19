@@ -67,7 +67,7 @@ Each song contains following data fields.
    - Python, Elasticsearch and Kibana needed in your PC
    
 ### Getting started with the web app :
-   - Start elasticsearch cluster on port 9200 and run Kibana
+   - Start elasticsearch cluster on port 9200 
    - Clone the repository
    ```
    git clone https://github.com/rashmi9913/Sinhala-song-and-Metaphor-search-engine.git
